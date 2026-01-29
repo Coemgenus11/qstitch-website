@@ -6,9 +6,17 @@ definePageMeta({
 
 <template>
   <LandingContainer>
-    <LandingHero></LandingHero>
-    <LandingFeatures></LandingFeatures>
-    <LandingLogos></LandingLogos>
-    <LandingCta></LandingCta>
+    <LandingHero />
+
+    <CompanyAbout />
+    <CompanyVisionMission />
+    <CompanyCoreValues />
+
+    <CompanyCapabilities />
+    <CompanyTeam />
+    <CompanyServices />
+    <CompanyBrand />
+    <CompanyGallery />
+    <CompanyContact />
   </LandingContainer>
 </template>

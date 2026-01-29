@@ -1,20 +1,24 @@
 <script setup>
 const menuitems = [
   {
-    title: "Features",
-    path: "#",
-  },
-  {
-    title: "Pricing",
-    path: "/pricing",
-  },
-  {
     title: "About",
-    path: "/about",
+    path: "#about",
+  },
+  {
+    title: "Vision",
+    path: "#vision",
+  },
+  {
+    title: "Capabilities",
+    path: "#capabilities",
+  },
+  {
+    title: "Services",
+    path: "#services",
   },
   {
     title: "Contact",
-    path: "/contact",
+    path: "#contact",
   },
 ];
 
@@ -25,10 +29,14 @@ const open = ref(false);
   <LandingContainer>
     <header class="flex flex-col lg:flex-row justify-between items-center my-5">
       <div class="flex w-full lg:w-auto items-center justify-between">
-        <a href="/" class="text-lg"
-          ><span class="font-bold text-slate-800">Nuxt</span
-          ><span class="text-slate-500">ship</span>
+        <a href="/" class="flex items-center gap-2">
+          <img
+            src="~/assets/img/qsi-logo.webp"
+            alt="QStitch Company Profile"
+            class="h-12 w-auto"
+          />
         </a>
+
         <div class="block lg:hidden">
           <button @click="open = !open" class="text-gray-800">
             <svg
@@ -68,16 +76,20 @@ const open = ref(false);
           </li>
         </ul>
         <div class="lg:hidden flex items-center mt-3 gap-4">
-          <LandingLink href="#" styleName="muted" block size="md"
-            >Log in</LandingLink
-          >
-          <LandingLink href="#" size="md" block>Sign up</LandingLink>
+          <LandingLink href="#contact" block size="md">Request a Quote</LandingLink>
         </div>
       </nav>
       <div>
         <div class="hidden lg:flex items-center gap-4">
-          <a href="#">Log in</a>
-          <LandingLink href="#" size="md">Sign up</LandingLink>
+          <a
+            class="text-sm text-slate-600 hover:text-slate-900"
+            href="/QStitch-Company-Profile-2025.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            Download PDF
+          </a>
+          <LandingLink href="#contact" size="md">Request a Quote</LandingLink>
         </div>
       </div>
     </header>
