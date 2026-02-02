@@ -3,71 +3,71 @@ onMounted(() => {
   const form = document.getElementById("form");
   const result = document.getElementById("result");
 
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
     form.classList.add("was-validated");
+
     if (!form.checkValidity()) {
       form.querySelectorAll(":invalid")[0].focus();
       return;
     }
-    const formData = new FormData(form);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
 
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData);
+
+    result.style.display = "block";
+    result.classList.remove("text-green-500", "text-red-500");
     result.innerHTML = "Sending...";
 
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: json,
-    })
-      .then(async (response) => {
-        let json = await response.json();
-        if (response.status == 200) {
-          result.classList.add("text-green-500");
-          result.innerHTML = json.message;
-        } else {
-          console.log(response);
-          result.classList.add("text-red-500");
-          result.innerHTML = json.message;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        result.innerHTML = "Something went wrong!";
-      })
-      .then(function () {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok) {
+        result.classList.add("text-green-500");
+        result.innerHTML = data?.message || "Message sent successfully.";
         form.reset();
         form.classList.remove("was-validated");
-        setTimeout(() => {
-          result.style.display = "none";
-        }, 5000);
-      });
+      } else {
+        result.classList.add("text-red-500");
+        result.innerHTML =
+          data?.message || "Failed to send message. Please try again.";
+      }
+    } catch (error) {
+      console.log(error);
+      result.classList.add("text-red-500");
+      result.innerHTML = "Something went wrong!";
+    }
+
+    setTimeout(() => {
+      result.style.display = "none";
+    }, 5000);
   });
 });
 </script>
 
+
 <template>
-  <!-- To make this contact form work, create your free access key from https://web3forms.com/
-     Then you will get all form submissions in your email inbox. -->
   <form
-    action="https://api.web3forms.com/submit"
-    method="POST"
     id="form"
     class="needs-validation"
     novalidate
   >
-    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
-    <!-- Create your free access key from https://web3forms.com/ -->
     <input
       type="checkbox"
       class="hidden"
       style="display: none"
       name="botcheck"
     />
+
     <div class="mb-5">
       <input
         type="text"
@@ -80,9 +80,10 @@ onMounted(() => {
         Please provide your full name.
       </div>
     </div>
+
     <div class="mb-5">
-      <label for="email_address" class="sr-only">Email Address</label
-      ><input
+      <label for="email_address" class="sr-only">Email Address</label>
+      <input
         id="email_address"
         type="email"
         placeholder="Email Address"
@@ -97,6 +98,7 @@ onMounted(() => {
         Please provide a valid email address.
       </div>
     </div>
+
     <div class="mb-3">
       <textarea
         name="message"
@@ -108,10 +110,12 @@ onMounted(() => {
         Please enter your message.
       </div>
     </div>
+
     <LandingButton type="submit" size="lg" block>Send Message</LandingButton>
     <div id="result" class="mt-3 text-center"></div>
   </form>
 </template>
+
 
 <style>
 .invalid-feedback,
