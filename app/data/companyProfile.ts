@@ -27,9 +27,9 @@ export const companyProfile = {
     established: "July 8, 2020",
     location: "Cabuyao, Laguna",
     paragraph:
-      "Established amid the Covid-19 pandemic, QStitch grew from a small operation into a capable garments manufacturing team — built on professionalism, reliability, and integrity.",
+      "QStitch, Inc. is a duly licensed garments manufacturing company established on July 8, 2020 and based in Laguna, Philippines. Founded during the height of the pandemic, the company was built with a clear purpose: to deliver quality workmanship, operational reliability, and long-term value to its clients. QStitch specializes in sewing and production services, supported by skilled manpower, modern equipment, and a strong commitment to customer satisfaction and adaptability to client requirements.",
     longStory:
-      "The company started with a few machines, limited resources, and a small but committed group of people. Through continuous improvement and disciplined processes, the team expanded its capability in subcontracting and brand-building while keeping quality and on-time delivery at the center.",
+      "QStitch, Inc. was founded during the height of the pandemic, following the closure of Hanes where the company owner was previously employed. Facing uncertainty, she was inspired to start her own garment factory after hearing concerns from skilled sewers about the difficulty of finding work in that period. This became the driving force behind building a company that values people, quality, and resilience. What began with a small group has since grown into a strong, capable team made up of supervisors, line leaders, quality control personnel, sewers, trimmers, and mechanics. The experience of starting from the ground up shaped the company’s vision, mission, and core values, grounded in the belief that professionalism, reliability, and integrity are essential not only in business, but in supporting one another. This foundation continues to guide QStitch as it moves forward — focused on growth, continuous improvement, and long-term partnerships.",
   },
   vision:
     "To be recognized as a trusted and preferred service provider in the garments manufacturing sector — known for our commitment to people, quality, and continuous improvement.",

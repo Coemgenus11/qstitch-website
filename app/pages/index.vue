@@ -2,21 +2,23 @@
 definePageMeta({
   layout: "landing",
 });
+import { clients } from "~/data/clients"
 </script>
 
 <template>
+  
+  <LandingHero />
   <LandingContainer>
-    <LandingHero />
 
     <CompanyAbout />
     <CompanyVisionMission />
     <CompanyCoreValues />
-
     <CompanyCapabilities />
     <CompanyTeam />
     <CompanyServices />
-    <CompanyBrand />
     <CompanyGallery />
-    <CompanyContact />
   </LandingContainer>
+    <ClientsCarousel :clients="clients" :rows="2" :speed-seconds="28" />
+    <CompanyContact />
+
 </template>

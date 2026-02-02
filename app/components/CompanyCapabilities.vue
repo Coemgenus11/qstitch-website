@@ -1,6 +1,30 @@
 <script setup lang="ts">
 import { companyProfile } from "~/data/companyProfile";
 
+const machineGallery = [
+  {
+    src: "/img/capabilities/machine-1.jpeg",
+    alt: "Industrial sewing machines in production line",
+    label: "Production Line",
+  },
+  {
+    src: "/img/capabilities/machine-2.png",
+    alt: "Overlock machines for garment finishing",
+    label: "Overlock & Finishing",
+  },
+  {
+    src: "/img/capabilities/machine-3.png",
+    alt: "Cutting and preparation area",
+    label: "Preparation Area",
+  },
+  {
+    src: "/img/capabilities/machine-4.jpeg",
+    alt: "Quality checking and stitching detail",
+    label: "Quality Check",
+  },
+];
+
+
 const q = ref("");
 
 const machines = computed(() => {
@@ -25,7 +49,14 @@ const machines = computed(() => {
         <p class="mt-2 text-5xl font-bold tracking-tight">
           {{ companyProfile.keyStats[0].value }}
         </p>
-        <p class="mt-2 text-slate-200">{{ companyProfile.keyStats[0].note }}</p>
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-200">
+          To date, QStitch operates
+          <span class="font-semibold text-white">224 sewing machines</span>
+          in good running condition. Our facility is equipped with various types of machines to support
+          different garments and styles, including complex requirements. All equipment is maintained by
+          experienced and competent mechanics to ensure consistent workability at any given time.
+        </p>
+
         <div class="mt-6 grid grid-cols-3 gap-4">
           <div class="rounded-xl bg-white/10 p-4">
             <p class="text-xs text-slate-300">Employees</p>
@@ -60,6 +91,33 @@ const machines = computed(() => {
             />
           </div>
         </div>
+        
+        <!-- Machine gallery -->
+        <div class="mt-6 grid grid-cols-2 gap-3 sm:gap-4">
+          <figure
+            v-for="img in machineGallery"
+            :key="img.src"
+            class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50"
+          >
+            <img
+              :src="img.src"
+              :alt="img.alt"
+              class="h-32 w-full object-cover sm:h-40 md:h-44 transition-transform duration-500 group-hover:scale-[1.03]"
+              loading="lazy"
+            />
+
+            <!-- subtle gradient overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/0 to-black/0 opacity-70" />
+
+            <!-- label -->
+            <!-- <figcaption class="absolute bottom-0 left-0 right-0 p-3">
+              <span class="inline-flex items-center rounded-full bg-white/80 px-2.5 py-1 text-xs font-medium text-slate-800 backdrop-blur">
+                {{ img.label }}
+              </span>
+            </figcaption> -->
+          </figure>
+        </div>
+
 
         <div class="mt-6 overflow-hidden rounded-xl border border-slate-200">
           <table class="w-full text-left text-sm">
