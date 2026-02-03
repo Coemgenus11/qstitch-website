@@ -8,17 +8,17 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
 
   runtimeConfig: {
-    turnstileSecretKey: process.env.TURNSTILE_SECRET_KEY || "",
+    turnstileSecretKey: process.env.NUXT_TURNSTILE_SECRET_KEY || "",
 
     smtpHost: process.env.SMTP_HOST || "",
-    smtpPort: process.env.SMTP_PORT || "587",
+    smtpPort: process.env.SMTP_PORT || "465",
     smtpUser: process.env.SMTP_USER || "",
     smtpPass: process.env.SMTP_PASS || "",
     mailFrom: process.env.MAIL_FROM || "",
     mailTo: process.env.MAIL_TO || "",
     public: {
       // exposed to client
-      turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || "",
+      turnstileSiteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY || "",
     },
   },
 

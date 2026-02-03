@@ -1,23 +1,74 @@
+
+<!-- app/components/landing/Contactform.vue -->
 <script setup>
+const config = useRuntimeConfig()
+
+const turnstileToken = ref("")
+const turnstileWidgetId = ref(null)
+
+useHead({
+  script: [
+    {
+      src: "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit",
+      async: true,
+      defer: true,
+    },
+  ],
+})
+
 onMounted(() => {
-  const form = document.getElementById("form");
-  const result = document.getElementById("result");
+  const form = document.getElementById("form")
+  const result = document.getElementById("result")
+
+  // Wait until turnstile is available, then render
+  const waitForTurnstile = () => {
+    if (window.turnstile) {
+      turnstileWidgetId.value = window.turnstile.render("#turnstile-container", {
+        sitekey: config.public.turnstileSiteKey,
+        theme: "light", // or "dark"
+        callback: (token) => {
+          turnstileToken.value = token
+        },
+        "expired-callback": () => {
+          turnstileToken.value = ""
+        },
+        "error-callback": () => {
+          turnstileToken.value = ""
+        },
+      })
+      return
+    }
+    setTimeout(waitForTurnstile, 100)
+  }
+  waitForTurnstile()
 
   form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    form.classList.add("was-validated");
+    e.preventDefault()
+    form.classList.add("was-validated")
 
     if (!form.checkValidity()) {
-      form.querySelectorAll(":invalid")[0].focus();
-      return;
+      form.querySelectorAll(":invalid")[0]?.focus()
+      return
     }
 
-    const formData = new FormData(form);
-    const payload = Object.fromEntries(formData);
+    // ✅ fail-closed: require captcha token
+    if (!turnstileToken.value) {
+      result.style.display = "block"
+      result.classList.remove("text-green-500")
+      result.classList.add("text-red-500")
+      result.innerHTML = "Please complete the captcha."
+      return
+    }
 
-    result.style.display = "block";
-    result.classList.remove("text-green-500", "text-red-500");
-    result.innerHTML = "Sending...";
+    const formData = new FormData(form)
+    const payload = Object.fromEntries(formData)
+
+    // ✅ include token
+    payload.turnstileToken = turnstileToken.value
+
+    result.style.display = "block"
+    result.classList.remove("text-green-500", "text-red-500")
+    result.innerHTML = "Sending..."
 
     try {
       const res = await fetch("/api/contact", {
@@ -27,46 +78,47 @@ onMounted(() => {
           Accept: "application/json",
         },
         body: JSON.stringify(payload),
-      });
+      })
 
-      const data = await res.json().catch(() => ({}));
+      const data = await res.json().catch(() => ({}))
 
       if (res.ok) {
-        result.classList.add("text-green-500");
-        result.innerHTML = data?.message || "Message sent successfully.";
-        form.reset();
-        form.classList.remove("was-validated");
+        result.classList.add("text-green-500")
+        result.innerHTML = data?.message || "Message sent successfully."
+        form.reset()
+        form.classList.remove("was-validated")
+
+        // ✅ reset widget + token after success
+        turnstileToken.value = ""
+        if (window.turnstile && turnstileWidgetId.value !== null) {
+          window.turnstile.reset(turnstileWidgetId.value)
+        }
       } else {
-        result.classList.add("text-red-500");
-        result.innerHTML =
-          data?.message || "Failed to send message. Please try again.";
+        result.classList.add("text-red-500")
+        result.innerHTML = data?.message || "Failed to send message. Please try again."
+
+        // Optional: reset captcha after server rejection
+        turnstileToken.value = ""
+        if (window.turnstile && turnstileWidgetId.value !== null) {
+          window.turnstile.reset(turnstileWidgetId.value)
+        }
       }
     } catch (error) {
-      console.log(error);
-      result.classList.add("text-red-500");
-      result.innerHTML = "Something went wrong!";
+      console.log(error)
+      result.classList.add("text-red-500")
+      result.innerHTML = "Something went wrong!"
     }
 
     setTimeout(() => {
-      result.style.display = "none";
-    }, 5000);
-  });
-});
+      result.style.display = "none"
+    }, 5000)
+  })
+})
 </script>
 
-
 <template>
-  <form
-    id="form"
-    class="needs-validation"
-    novalidate
-  >
-    <input
-      type="checkbox"
-      class="hidden"
-      style="display: none"
-      name="botcheck"
-    />
+  <form id="form" class="needs-validation" novalidate>
+    <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
 
     <div class="mb-5">
       <input
@@ -111,26 +163,27 @@ onMounted(() => {
       </div>
     </div>
 
+    <!-- ✅ Turnstile widget container -->
+    <div class="mb-5 flex justify-center">
+      <div id="turnstile-container"></div>
+    </div>
+
     <LandingButton type="submit" size="lg" block>Send Message</LandingButton>
     <div id="result" class="mt-3 text-center"></div>
   </form>
 </template>
-
 
 <style>
 .invalid-feedback,
 .empty-feedback {
   display: none;
 }
-
 .was-validated :placeholder-shown:invalid ~ .empty-feedback {
   display: block;
 }
-
 .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
   display: block;
 }
-
 .is-invalid,
 .was-validated :invalid {
   border-color: #dc3545;
