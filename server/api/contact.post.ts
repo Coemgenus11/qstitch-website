@@ -126,7 +126,8 @@ async function enforceHourlyRateLimit(params: { ip: string; email?: string }) {
   if (nextIpCount > MAX_PER_HOUR || (nextEmailCount !== null && nextEmailCount > MAX_PER_HOUR)) {
     throw createError({
       statusCode: 429,
-      statusMessage: `Too many requests. Max ${MAX_PER_HOUR} messages per hour.`,
+      // statusMessage: `Too many requests. Max ${MAX_PER_HOUR} messages per hour.`,
+      statusMessage: `Too many requests.`,
     })
   }
 

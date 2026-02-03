@@ -19,6 +19,24 @@ export default defineNuxtConfig({
     public: {
       // exposed to client
       turnstileSiteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY || "",
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://qstitchclothing.com", // palitan mo
+    },
+  },
+
+  app: {
+    head: {
+      htmlAttrs: { lang: "en" },
+      titleTemplate: "%s · QStitch, Inc.",
+      meta: [
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "theme-color", content: "#0f172a" },
+        { property: "og:site_name", content: "QStitch, Inc." },
+        { property: "og:type", content: "website" },
+      ],
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      ],
     },
   },
 
