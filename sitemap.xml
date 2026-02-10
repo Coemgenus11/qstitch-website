@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main Pages -->
+  <url>
+    <loc>https://medicalcoatplus.com/men</loc>
+    <lastmod>2025-12-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medicalcoatplus.com/women</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medicalcoatplus.com/about</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medicalcoatplus.com/about/our-story</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medicalcoatplus.com/about/gallery</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://medicalcoatplus.com/contact-us</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Products -->
+  <url>
+    <loc>https://medicalcoatplus.com/products</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://medicalcoatplus.com/products?filter.p.gender=Men</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medicalcoatplus.com/products?filter.p.product_type=Scrub+Suit+(Tops)&amp;filter.p.gender=Men</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medicalcoatplus.com/products?filter.p.product_type=Scrub+Suit+(Pants)&amp;filter.p.gender=Men</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medicalcoatplus.com/products?filter.p.gender=Women</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medicalcoatplus.com/products?filter.p.product_type=Scrub+Suit+(Tops)&amp;filter.p.gender=Women</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medicalcoatplus.com/products?filter.p.product_type=Scrub+Suit+(Pants)&amp;filter.p.gender=Women</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blogs -->
+  <url>
+    <loc>https://medicalcoatplus.com/blog/guide-choosing-medical-scrubs-philippines/</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medicalcoatplus.com/blog/medical-scrub-trends-philippines-2026/</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://medicalcoatplus.com/blog/ordering-medical-scrubs-online-size-guide-responsible-buying/</loc>
+    <lastmod>2025-12-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

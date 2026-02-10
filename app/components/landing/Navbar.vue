@@ -79,7 +79,7 @@ const open = ref(false);
           <LandingLink href="#contact" block size="md">Request a Quote</LandingLink>
         </div>
       </nav>
-      <div>
+      <!-- <div>
         <div class="hidden lg:flex items-center gap-4">
           <a
             class="text-sm text-slate-600 hover:text-slate-900"
@@ -91,7 +91,7 @@ const open = ref(false);
           </a>
           <LandingLink href="#contact" size="md">Request a Quote</LandingLink>
         </div>
-      </div>
+      </div> -->
     </header>
   </LandingContainer>
 </template>

@@ -12,7 +12,7 @@
         <Icon name="mdi:facebook" size="22" />
       </a>
 
-      <a
+      <!-- <a
         href="https://instagram.com"
         target="_blank"
         rel="noopener noreferrer"
@@ -20,7 +20,7 @@
         class="text-slate-500 transition hover:text-slate-900"
       >
         <Icon name="mdi:instagram" size="22" />
-      </a>
+      </a> -->
 
       <a
         href="https://www.tiktok.com/@qstitchinc"

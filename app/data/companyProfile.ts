@@ -119,4 +119,8 @@ export const companyProfile = {
     description:
       "We are capable of sewing different varieties of fabrics and styles depending on customer requirements and market demands.",
   },
+  contact: {
+    phone: "+63 917 594 9809",
+    email: "info@qstitchclothing.com", // optional
+  },
 } as const;
