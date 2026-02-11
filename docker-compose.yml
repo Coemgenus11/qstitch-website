@@ -5,6 +5,8 @@ services:
     build:
       context: .
     container_name: nuxt_app
+    env_file:
+      - .env          # <- makes your SMTP/TURNSTILE variables available
     ports:
       - "3000:3000"
     restart: unless-stopped
